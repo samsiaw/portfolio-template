@@ -1,0 +1,89 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block title %} {{project.name}} {% endblock title %}
+
+{% block projects_focus %} focus {% endblock projects_focus %}
+
+{% block content %}
+<main class="single-p-main">
+   <div class="btn-grp">
+            <div class="btn-proj">
+                <a href="/projects">
+                    <span> Back To Projects </span>
+                </a>
+            </div>
+
+        <div class="navigation-btns">
+            <button id="prev" disabled>Prev</button>
+            <button id="next" disabled>Next</button>
+        </div>
+   </div>
+
+    {% if not project.show %}
+        <h1 class="p-header"> Project Hidden </h1>
+    
+    {% else %}
+        <h1 class="p-header"> {{project.name}} </h1>
+
+        {% if project.github_link or project.external_link %}
+        <div class="p-links">
+            {% if project.github_link %}
+            <div class="info-link-wrap">
+                <div class="link"> <a href="{{project.github_link}}">Github</a><img src="{% static 'portfolio/images/link.png' %}"> </div>
+                <hr class="text-underline">
+            </div>
+            {% endif %}
+
+            {% if project.external_link %}
+            <div class="info-link-wrap">
+                <div class="link"> <a href="{{project.external_link}}">External</a><img src="{% static 'portfolio/images/link.png' %}"> </div>
+                <hr class="text-underline">
+            </div>
+            {% endif %}
+        </div>           
+        {% endif %}
+
+            
+        
+        {% if project.languages|length > 0 %}
+        <details  open class="p-languages">
+            <summary> Programming Languages Used </summary>
+                <ul>
+                    {% for l in project.languages %}
+                        <li>{{l}}</li>
+                    {% endfor %}
+                </ul>
+        </details>
+            
+            {% endif %}
+
+        <fieldset id="single-p-descr">
+            <legend>Project Description</legend>
+            <pre>{{project.long_descr}}</pre>
+
+            {% if project.concepts|length > 0 %}
+                <div id="concepts">
+                <br>
+                    Some concepts involved include:
+                    <ul>
+                        {% for c in project.concepts %}
+                            <li>{{c}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </fieldset>
+
+        {% if project.reflection %}
+        <fieldset id="single-p-ref">
+            <legend>Reflection</legend>
+            <pre>{{project.reflection}}</pre>
+        </fieldset>
+        {% endif %}
+
+    {% endif %}
+</main>
+<input type="hidden" id="project-id" value="{{project.id}}">
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends './base.html' %}
+
+{% block title %} About {% endblock title %}
+
+{% block about_focus %} focus {% endblock about_focus %}
+
+{% block content %}
+<div class="header-wrap">
+        <div class="header-name-wrap">
+            <div class="header-name">About</div>
+            <hr id="header-hr">
+        </div>
+    </div>
+
+    <div id="about-info-wrap">
+        <div id="about-text-wrap">
+            <div id="about-text">
+                {% autoescape off %}
+                    <pre>{{about}}</pre>
+                {% endautoescape %}
+            </div>
+            <!--<div id="skills">
+                Skills: {{skills}}
+            </div>-->
+        </div>
+
+        <img id="self-portrait" src={{img_src}}>
+    </div>
+</div>
+{% endblock content %}

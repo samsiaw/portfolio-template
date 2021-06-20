@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+        <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}">
+        <script src="{% static 'portfolio/script.js' %}"></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul id="navbar">
+                    <li class="navbar-item {% block home_focus %}{% endblock home_focus %}" id="home" >
+                        <a href="/">HOME</a>
+                    </li>
+
+                    <li class="navbar-item {% block projects_focus %}{% endblock projects_focus %}" id="projects">
+                        <a href="/projects">PROJECTS</a>
+                    </li>
+
+                    {% comment %} <li class="navbar-item {% block about_focus %}{% endblock about_focus %}" id="about">
+                        <a href="/about">ABOUT ME</a>
+                    </li> {% endcomment %}
+                </ul>
+            </nav>
+            <a href="mailto:{{user.email}}"> <button id="btn-contact">CONTACT</button></a>
+        </header>
+
+        <div id="content-wrap">
+            {% block content %}{% endblock content %}
+        </div>
+
+        {% block body %}{% endblock body %}
+
+        <input type="hidden" id="static" value="{% static 'portfolio' %}">
+
+
+        <footer>
+            <div style="width: fit-content; font-size: 12px;">
+                Developed by
+                
+                <div class="info-link-wrap">
+                    <div class="link"> <a href="https://github.com/samsiaw"> @samsiaw </a> </div>
+                    <hr class="text-underline">
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

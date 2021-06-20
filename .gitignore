@@ -1,0 +1,6 @@
+/.vscode
+/TODO.txt
+/db.sqlite3
+/portfolio/__pycache__
+
+/test.log

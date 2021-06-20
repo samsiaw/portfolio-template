@@ -1,0 +1,60 @@
+{% extends './base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block home_focus %} focus {% endblock home_focus %}
+
+{% block content %}
+<main class="header-wrap">
+    <section class="header-name-wrap">
+        <div id="header-greet" >Hi, my name is</div>
+        <div class="header-name">{{user.first_name}} {{user.last_name}}</div>
+    </section>
+    <div id="info">
+        <div class="info-descr"> 
+        {% autoescape off %}
+        {{user.short_descr|linebreaks}}
+        {% endautoescape %}
+
+        </div>
+
+        <div class="info-links">
+            <!--TODO Add if statements for links -->
+            {% if user.github_link %}
+            <div class="info-link-wrap">
+                <div class="link"> <a href="{{user.github_link}}"> Github </a> </div>
+                <hr class="text-underline">
+            </div>
+            {% endif %}
+
+            {% if user.linkedin_link %}
+            <div class="info-link-wrap">
+                <div class="link"> <a href="{{user.linkedin_link}}"> LinkedIn </a> </div>
+                <hr class="text-underline">
+            </div>
+            {% endif %}
+
+            {% if user.facebook_link %}
+            <div class="info-link-wrap">
+                <div class="link"> <a href="{{user.facebook_link}}"> Facebook </a> </div>
+                <hr class="text-underline">
+            </div>
+            {% endif %}
+
+            {% if user.twitter_link %}
+            <div class="info-link-wrap">
+                <div class="link"> <a href="{{user.twitter_link}}"> Twitter </a> </div>
+                <hr class="text-underline">
+            </div>
+            {% endif %}
+
+            {% if user.instagram_link %}
+            <div class="info-link-wrap">
+                <div class="link"> <a href="{{user.instagram_link}}"> Instagram </a> </div>
+                <hr class="text-underline">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock content %}

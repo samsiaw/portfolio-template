@@ -1,0 +1,89 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block title %} Projects {% endblock title %}
+
+{% block projects_focus %} focus {% endblock projects_focus %}
+
+{% block content %}
+
+{% if featured|length == 0 and projects|length == 0 %}
+    <h3>
+        Sorry No Projects Added
+        <br><br>
+        Check Back later
+    </h3>
+{% endif %}
+{% if featured|length > 0 %}
+<fieldset class="projects-wrap">
+    <legend> Featured </legend>
+
+    <div class="projects-grid">
+        {% for project in featured %}           
+            
+                <div class="p-wrap">
+
+                    <h1 class="p-header">{{project.name}}</h1>
+                    <span class="p-descr">{{project.short_descr}} </span>
+
+                    <span class="p-tech">
+                        
+                        {% for lang in project.languages %}
+                            <span>
+                                <img class="tool" alt="{{lang|lower}}" src="">
+                            </span>
+                            
+                        {% endfor %}
+                    </span>
+
+                    <div class="read-more">
+                        <a href="/projects/{{project.id}}">
+                            <span> Read More </span>
+                        </a>
+                    </div>
+                </div>
+
+        {% endfor %}
+
+    </div>
+</fieldset>
+{% endif %}
+
+{% if projects|length > 0 %}
+<fieldset class="projects-wrap">
+        <legend> {% if featured|length > 0 %} Others {% else %} Projects {% endif %} </legend>
+
+        <div class="projects-grid">
+            {% for project in projects %}
+                    <div class="p-wrap">
+
+                        <h1 class="p-header">{{project.name}}</h1>
+                        <span class="p-descr">{{project.short_descr}} </span>
+
+                        <span class="p-tech">
+                            {% for lang in project.languages %}
+                                <span>
+                                    <img class="tool" alt="{{lang|lower}}" src="">
+                                </span>
+                                
+                            {% endfor %}
+                        </span>
+
+                        <div class="read-more">
+                            <a href="/projects/{{project.id}}">
+                                <span> Read More </span>
+                            </a>
+                        </div>
+
+                    </div>
+            {% endfor %}
+        </div>
+</fieldset>
+{% endif %}
+
+{% endblock content %}
+
+{% block body %}
+
+{% endblock body %}

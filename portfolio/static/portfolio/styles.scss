@@ -1,0 +1,571 @@
+// $text-color : #3c403d;
+$text-color : #ffffff;
+$bg-color-main : #333435;
+// $border-color : #a3bcb6;
+
+$nav-bg-color : $bg-color-main;
+// $nav-text-color : #2258cc;
+$nav-text-color : #a6a8ac;
+$nav-hover-text-color: #e0e0e0;
+$border-color : $nav-text-color;
+
+$nav-font-size: 18px;
+$header-font-size : 60px;
+$header-info-size : 40px;
+  
+$nav-height: 80px;
+$p-border: black solid 1px;
+  
+$transition-default: all .3s ease 0s;
+$project-popup-transition: all 1s ease 0s;;
+$bottom-links-height: 40px;
+$project-img-height: 25px;
+
+$project-grid-size: 250px;
+
+$default-family: 'Courier New', Courier, monospace;
+
+@mixin center-items-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+@mixin center-items-row {
+  @include center-items-column();
+  flex-flow: row wrap;  
+}
+
+@mixin right-align-items {
+  @include center-items-column();
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+@mixin center-hr ($width: 2px) {
+  margin-top: 0;
+  margin-bottom: 30px;
+  width: 50%;
+  
+  border-width: $width 0 0 0;
+  border-color: $text-color;
+  transition: $transition-default; 
+}
+
+@mixin header-text ($fontSize) {
+  margin-bottom: 0;
+  font-size: $fontSize;
+  text-align: center;
+}
+
+
+
+@mixin legend-text($align: right) {
+  text-align: $align;
+  margin-right: 50px;
+  padding: 0 10px;
+  text-transform: uppercase;
+  @include default-font();
+}
+
+@mixin default-font {
+  //font-family: "Roboto Slab";
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+@mixin default-font-no-bold {
+  @include default-font();
+  font-weight: normal;
+}
+
+@mixin keep-at-bottom {
+  position: fixed;
+  bottom: 10%;
+  right: 20px;
+  width: 100%;
+}
+
+@mixin navbar-item-hover {
+  color: $nav-hover-text-color;
+}
+
+@mixin default-border-outline {
+  border: solid 1px $border-color;
+  border-radius: 5px;
+}
+
+@mixin default-btn ($width) {
+  background-color: $nav-text-color;
+  color: $bg-color-main;
+  border: solid 1px $nav-text-color;
+
+  height: 2.5em;
+  width: $width;
+  border-radius: 2.5em;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: $nav-bg-color;
+    color: $text-color;
+  } 
+}
+
+@mixin single-p-width-con() {
+  max-width: 900px;
+  min-width: 500px;
+}
+
+
+body {
+  display: flex;
+  flex-flow: column wrap;
+  overflow: auto;
+  align-items: center;
+  
+  background-color: $bg-color-main;
+  color: $text-color;
+
+  @include default-font-no-bold();
+}
+
+  
+  
+header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+
+  width: 100vw;
+  height: $nav-height;
+  
+  background: $nav-bg-color;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  z-index: 1;
+}
+
+#navbar { // <ul> in nav
+
+  display: flex;
+  flex-flow: row wrap;
+  // justify-content: space-between;
+  padding: 0 20px;
+
+  list-style: none;
+  
+  color: $nav-text-color;
+  
+}
+
+.navbar-item {
+  padding: 0 20px;
+  font-size: $nav-font-size;
+  color: $nav-text-color;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover {
+    @include navbar-item-hover();
+  }
+}
+
+#btn-contact {
+  @include default-btn($width: 12ch);
+}
+
+
+.focus { // nav item whose page is being displayed
+  @include navbar-item-hover();
+  text-decoration: overline;
+  color: $text-color;
+}
+
+/* Home Page */
+
+#content-wrap {
+  margin-top: $nav-height + $nav-height/2;
+  
+}
+
+main {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+}
+
+
+.header-name-wrap {
+  font-weight: bold;
+
+}
+
+#header-greet {
+  margin-bottom:20px; 
+  font-size:20px;
+}
+
+.header-name {
+  @include header-text($header-font-size);
+}
+
+#header-info {
+  font-size: $header-info-size;
+
+  text-align: center;
+}
+
+#info {
+  display: flex;
+  flex-flow: row;
+  margin: 40px 5px 5px 5px;
+  padding: 0 10px;
+
+  .info-descr {
+    width: 50%;
+    overflow-wrap: break-word;
+    font-family: monospace;
+    border-right: solid 1px $text-color;
+    padding-right: 5px;
+  }
+
+  .info-links {
+    width: 50%;
+    
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    font-family: monospace;
+    padding: 10px 10px;
+
+
+  }
+}
+
+.text-underline {
+  @include center-hr();
+}
+
+.info-link-wrap {
+  text-align: center;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  &:hover > .text-underline {
+    width: 100%;
+  }
+}
+
+/* Project Page */
+
+.projects-wrap { //Fieldset for grouping projects
+  border-width: 0 0 0 2px; //show only left border
+  border-radius: 5px;
+  margin: 20px 10px;
+  min-height: 15ch;
+
+  position: relative;
+  
+  legend {
+
+    @include legend-text();
+    position: absolute;
+    top: 15%;
+    left: -15px;
+    width: 1ch;
+    word-break: break-all;
+    background-color: $bg-color-main;
+  }
+}
+
+
+.projects-grid { // Wrapper for all projects in a fieldset
+ 
+  display: flex;
+  flex-flow: row wrap;
+  
+  border-radius: 5px;
+  padding: 0 5px;
+}
+
+.p-wrap { // Single project wrapper
+  grid-column: auto;
+  margin: 10px 10px;
+  display: grid;
+  grid-template-rows: 3fr 2fr 1fr 2fr;
+  
+  @include default-border-outline();
+  padding: 2px 5px;
+
+  width: 350px;
+  min-height: 250px;
+
+  &:hover {
+    border-color: $text-color;
+    border-width: 1px;
+  }
+}
+
+
+.p-header {
+  @include center-items-column();
+
+  text-align: center;
+
+  font-family: $default-family; //default family
+
+  text-transform: uppercase;
+}
+
+.p-descr {
+  text-align: center;
+  
+  font-size: 14px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+
+.p-tech {
+  text-align: center;
+  padding: 3px 0;
+  img {
+    height: $project-img-height;
+  }
+}
+
+.read-more {
+  @include center-items-column();
+  border-top: solid thin $nav-text-color;
+  text-transform: uppercase;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+  }
+  span {
+    font-size: 18px;
+    font-weight: bold;
+    
+    &::after {
+      content: "⇨";
+      transition: $transition-default;
+    }
+
+    &:hover:after {
+      font-size: 25px;
+    }
+  }
+}
+
+
+/* About Page */
+#about-info-wrap {
+  @include center-items-column();
+
+}
+
+#about-text-wrap {
+  text-align: left;
+  @include default-border-outline();
+  min-width: 500px;
+}
+
+#about-text {
+  padding: 0px 5px;
+  @include default-font-no-bold();
+  overflow-wrap: break-word;
+}
+
+/* Single Project Info Display */
+
+.single-p-main {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  @include single-p-width-con();
+
+  > :nth-child(n+3):nth-last-child(n+1){ // apply to all children except 1st two (btns and header)
+    // align to beginning line/ margin
+
+    align-self: flex-start;
+    margin: 20px 5px;
+    
+  }
+
+  > pre {
+    width: 100%;
+    @include single-p-width-con();
+  }
+}
+
+.btn-proj {
+  width: 20ch;
+  height: 3ch;
+
+  @include center-items-column();
+  text-transform: uppercase;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+  }
+  span {
+    font-size: 18px;
+    font-weight: bold;
+    
+    &::before {
+      content: "⇦";
+      transition: $transition-default;
+    }
+
+    &:hover:before {
+      font-size: 25px;
+    }
+  }
+}
+
+
+#single-p-ref, #single-p-descr { // Reflection and Project description fieldsets
+  width: 100%;
+  @include single-p-width-con();
+
+  border-width: 1px 0 0 0;
+  padding: 15px;
+  
+  legend {
+    font-size: 16px;
+  }
+}
+
+.btn-grp {
+  width: 100%;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.navigation-btns {
+  > button {
+    width: 10ch;
+    height: 4ch;
+
+    border-radius: 4px;
+    border: none;
+
+    &:hover, &:disabled {
+      color: $text-color;
+      background-color: $bg-color-main;
+      border: 1px solid $nav-text-color;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.p-links {
+  display: flex;
+  flex-flow: row wrap;
+  
+  > .info-link-wrap {
+    margin: -25px 10px;
+  }
+  img {
+    width: 15px;
+  }
+}
+
+.p-languages { // details element for programming languages / tools
+  
+  > summary {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  > ul {
+    display: flex;
+    list-style-type: none;
+    width: 400px;
+    flex-flow: row wrap;
+
+    > li {
+      margin: 2px 2px;
+      flex: 20%;
+    }
+  }
+}
+
+pre { // Set all pre-formatted text to be of default family
+  font-family: $default-family;
+  
+  // Force pre to wrap text
+  // https://css-tricks.com/snippets/css/make-pre-text-wrap/
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+
+/* Scroll Bar */
+body::-webkit-scrollbar {
+  width: 15px;               /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: $bg-color-main;        /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+  &:hover {
+    background-color: $text-color;
+  }
+  background-color: $nav-text-color;    /* color of the scroll thumb */
+  border-radius: 10px;       /* roundness of the scroll thumb */
+  border: 5px solid $bg-color-main;  /* creates padding around scroll thumb */
+}
+
+/* Error Page */
+.e-header {
+  font-size: 80px;
+  font-family: $default-family;
+
+}
+
+.e-message {
+  font-size: large;
+  font-family: $default-family;
+}
+
+/* Footer */
+footer {
+  align-self: flex-end;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-end;
+}

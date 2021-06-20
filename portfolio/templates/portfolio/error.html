@@ -1,0 +1,15 @@
+{% extends './base.html' %}
+
+{% block title %} Error {% endblock title %}
+
+{% block content %}
+<main >
+    <p class="e-header">
+        {{request.session.error.code}}
+    </p>
+
+    <p class="e-message">
+        {{request.session.error.message}}
+    </p>
+</main>
+{% endblock content %}
