@@ -61,7 +61,9 @@
 
         <fieldset id="single-p-descr">
             <legend>Project Description</legend>
-            <pre>{{project.long_descr}}</pre>
+            {% autoescape off %}
+                {{project.long_descr|linebreaks}}
+            {% endautoescape %}
 
             {% if project.concepts|length > 0 %}
                 <div id="concepts">
@@ -79,7 +81,9 @@
         {% if project.reflection %}
         <fieldset id="single-p-ref">
             <legend>Reflection</legend>
-            <pre>{{project.reflection}}</pre>
+            {% autoescape off %}
+                {{project.reflection|linebreaks}}
+            {% endautoescape %}
         </fieldset>
         {% endif %}
 
