@@ -6,7 +6,7 @@ from django.views.decorators.http import require_GET
 from .models import Owner, Project
 
 # Constants
-USERNAME = "testuser" # Username to which projects are registered.
+USERNAME = "test" # Username to which projects are registered.
 # This would typically be the user name for the superuser created
 
 @require_GET
