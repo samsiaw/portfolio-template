@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 # Create your models here.
 class Owner(AbstractUser):
@@ -118,6 +119,8 @@ class Project(models.Model):
     def __str__(self):
         return "Project: "+self.name
 
+    def get_absolute_url(self):
+        return reverse("projects", kwargs={"project_id": self.id})
     
     def get_project_info_v(self): # Get project info [verbose]
         all_langs = [lang.name for lang in self.languages.all()]
