@@ -2,14 +2,14 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.db import IntegrityError
 from django.http import JsonResponse
 from django.urls import reverse
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_safe
 from .models import Owner, Project
 
 # Constants
 USERNAME = "test" # Username to which projects are registered.
 # This would typically be the user name for the superuser created
 
-@require_GET
+@require_safe
 def index(request):
     """
     Renders the home / landing page of the website
@@ -37,7 +37,7 @@ def index(request):
 
 
 # Projects Page [Projects Listing]
-@require_GET
+@require_safe
 def projects(request):
     """
     Renders the projects page (listing all projects)
@@ -75,10 +75,10 @@ def projects(request):
         return HttpResponseRedirect(reverse("error"))
     
     #return JsonResponse(response)
-    return render(request, "portfolio/projects.html", context=response)
+    return render(request, "portfolio/projects.html", context=response, status=200)
 
 
-@require_GET
+@require_safe
 def single_project(request, project_id):
     """
     Renders the single_project page with the project_id provided
