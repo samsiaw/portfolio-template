@@ -1,5 +1,10 @@
 # portfolio-template
 
+
+A test version of this app is deployed on 
+https://mypyanywhere.pythonanywhere.com/
+
+
 ## Table of Content
 
 1. [Running The App](#running-the-project)
@@ -7,9 +12,6 @@
 3. [Adding Documentation](#adding-documentation)
 4. [Known Bugs](#known-bugs)
 
-
-A test version of this app is deployed on 
-https://mypyanywhere.pythonanywhere.com/
 
 ## Running the Project
 
