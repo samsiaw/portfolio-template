@@ -1,6 +1,14 @@
 # portfolio-template
 
-A version of this app is hosted on 
+## Table of Content
+
+1. [Running The App](#running-the-project)
+2. [Setting Up A Test User](#setting-up-a-test-user)
+3. [Adding Documentation](#adding-documentation)
+4. [Known Bugs](#known-bugs)
+
+
+A test version of this app is deployed on 
 https://mypyanywhere.pythonanywhere.com/
 
 ## Running the Project
@@ -44,8 +52,6 @@ You would need to set-up a `superuser` to manage the back-end database.
 
 3. Type `test` for username and a password and email of your choice. 
 
-...Highly encouraged to type in something for the email to know what goes where how in the web app
-
 4. Rerun the server with `python manage.py runserver`
 
 >> If you created the superuser with username `test`, you should notice the homepage no longer shows `Internal Server Error`
@@ -88,10 +94,10 @@ The default website also supports a project being *featured* or not.
 >> You could decide not to set any project as featured at all, and the projects page should adapt accordingly.
 
 
-*Try setting different values for the current user, (i.e first and last name, email,etc..), add a few projects and notice how things*
+*Try setting different values for the current user, (i.e first and last name, email,etc..), add a few projects and notice how things change*
 
 
-### Known Errors
+## Known Bugs
 Deleting a project doesn't break the website. 
 
 However, the navigation buttons *(i.e Prev and Next)* on single project pages wouldn't work properly.
